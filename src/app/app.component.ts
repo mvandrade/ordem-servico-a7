@@ -1,10 +1,16 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from "@angular/core"
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  templateUrl: 'app.component.html'
 })
-export class AppComponent {
-  title = 'ordem-servico-a7';
+export class AppComponent implements OnInit {
+
+  content = 'Bem vindo ao software de Ordem de Serviços!'
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
 }
