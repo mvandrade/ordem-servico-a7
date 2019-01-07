@@ -10,10 +10,11 @@
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+      <div class="collapse navbar-collapse pull-left" id="navbar-collapse" *ngIf=currentUser>
         <ul class="nav navbar-nav">
             <li routerLinkActive="active"><a href="#">Ordens</a></li>
             <li routerLinkActive="active"><a [routerLink]="['/about']" >Sobre</a></li>
+            <li><a (click)="logout()" style="cursor:pointer;">Sair</a></li>
         </ul>
       </div>
       <!-- /.navbar-collapse -->

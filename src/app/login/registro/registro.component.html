@@ -5,7 +5,7 @@
   <div class="col-xs-12 col-sm-offset-4 col-sm-4 login-box-body">
     <p class="login-box-msg">Informe os seus dados para realização de seu registro.</p>
 
-    <form [formGroup]="registroForm" novalidate>
+    <form [formGroup]="registroForm" (ngSubmit)="onSubmit()" novalidate>
 
       <div class="form-group has-feedback">
         <app-input-container errorMessage="Campo obrigatório com 5 caracteres no mínimo." label="Nome">
@@ -37,33 +37,6 @@
         <span class="help-block has-error-block" *ngIf="registroForm.hasError('passwordsNotMatch')"><i class="fa fa-remove"></i> Passwords não conferem</span>
       </div>
 
-
-
-      <!-- <div class="form-group">
-        <input type="nome" class="form-control" formControlName="nome" placeholder="Nome completo">
-        <span class="glyphicon glyphicon-user form-control-feedback"></span>
-        <div *ngIf="submitted && f.nome.errors" class="invalid-feedback">
-            <div *ngIf="f.nome.errors.required">Nome é obrigatório</div>
-        </div>
-      </div>
-      <div class="form-group has-feedback">
-        <input type="email" class="form-control" formControlName="email" placeholder="Email">
-        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-        <div *ngIf="submitted && f.email" class="invalid-feedback">
-            <div *ngIf="f.email.errors.required">E-Mail é obrigatório</div>
-        </div>
-      </div>
-      <div class="form-group has-feedback">
-        <input type="password" class="form-control" formControlName="password" placeholder="Password">
-        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-        <div *ngIf="submitted && f.password" class="invalid-feedback">
-            <div *ngIf="f.password.errors.required">Password é obrigatório</div>
-        </div>
-      </div>
-      <div class="form-group has-feedback">
-          <input type="password" class="form-control" formControlName="confirmaPassword" placeholder="Confirme a password">
-          <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
-      </div> -->
       <div class="row">
           <div class="col-xs-offset-8 col-xs-4">
             <button class="btn btn-primary btn-block btn-flat" [disabled]=registroForm.invalid>Registrar</button>

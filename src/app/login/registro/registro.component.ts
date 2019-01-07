@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
+import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { first } from 'rxjs/operators';
+
+import { AlertService, UsuarioService, AuthenticationService } from '@/_services';
 
 
 @Component({
@@ -13,9 +17,11 @@ export class RegistroComponent implements OnInit {
   registroForm: FormGroup
 
   constructor(
-    private formBuilder: FormBuilder) {
-
-    }
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private authenticationService: AuthenticationService,
+    private usuarioService: UsuarioService,
+    private alertService: AlertService) { }
 
   ngOnInit() {
 
@@ -27,8 +33,21 @@ export class RegistroComponent implements OnInit {
   },{ validator: RegistroComponent.equalsTo});
   }
 
-  static equalsTo( group: AbstractControl): {[key: string]: boolean} {
+  onSubmit() {
 
+    this.usuarioService.register(this.registroForm.value)
+      .pipe(first())
+      .subscribe(
+          data => {
+              this.alertService.success('Registro Realizado com sucesso', true);
+              this.router.navigate(['/login']);
+          },
+          error => {
+              this.alertService.error(error);
+          });
+  }
+
+  static equalsTo( group: AbstractControl): {[key: string]: boolean} {
 
     const password = group.get('password')
     const confirmePassword = group.get('confirmePassword')
